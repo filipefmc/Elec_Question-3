@@ -1,0 +1,36 @@
+//Using Arduino Framework
+
+//some declares 
+const int  button_input = 3;   // define the input pin button
+int b_State = 0;               // current state
+int previous_b_State = 0;      // previous state
+int state=0;                   //States
+
+// State = 0 -> OFF 
+// State = 1 -> ON
+// State = 2 -> PROTECTED
+
+void loop() {
+  // read the button with input pin:
+  b_State = digitalRead(button_input);
+
+  // compare the buttonState to its previous state
+  if (b_State != previous_b_State) {
+    // if the state has changed and is High, start counting
+
+      // Button pressed
+      if (b_State == HIGH) {
+        State = 1; //State ON
+       }
+       // Button Released
+       else {
+        State = 2; //State Protected
+        delay(10000); //wait 10 sec
+        State = 0; //State OFF
+       }
+
+     }
+  // refresh previous state of button
+  previous_b_State = b_State;
+
+}
